@@ -18,10 +18,13 @@ vk_token = configs.get("VK_ACCESS_TOKEN").data
 vk_api_version = configs.get("VK_API_VERSION").data
 db_name = configs.get("DB_NAME").data
 
-fields = "online"
-user_id = int(sys.argv[1])
-request = "https://api.vk.com/method/users.get?access_token=" + vk_token + "&v=" + vk_api_version + "&fields=" + fields + "&user_ids=" + str(
-    user_id)
+try:
+    user_id = int(sys.argv[1])
+except:
+    user_id = configs.get("VK_USER_ID").data
+
+request = "https://api.vk.com/method/users.get?access_token=" + vk_token + "&v=" \
+          + vk_api_version + "&fields=online&user_ids=" + str(user_id)
 database_path = os.getcwd() + "\\" + db_name
 sql_create_stats_table = """ CREATE TABLE IF NOT EXISTS stats (
                                         id integer PRIMARY KEY,

@@ -1,0 +1,18 @@
+{
+    "bot_help_message": "scan># - start scanning. # - vk user ID;\n\n\"s\" - statistics for the current day;\n\n\"s#\" - statistics for a certain number of days, where # is the number of days. For example, s10;\n\n\"YYYY-MM-DD\" - statistics for a specific day, where YYYY is the year, MM is the month, and DD is the day. For example, 2021-01-31.",
+    "logged_out": "Logged out",
+    "logged": "logged",
+    "minutes_online": "Minutes online",
+    "no_records_found": "No records found",
+    "number_of_sessions": "Number of sessions",
+    "total_time_online": "Total time online",
+    "number_of_log_records": "Number of log records",
+    "all_sessions": "All sessions",
+    "mobile_sessions": "Mobile sessions",
+    "number_of_mobile_sessions": "Number of mobile sessions",
+    "duration_of_mobile_sessions": "Duration of mobile sessions",
+    "pc_session": "PC session",
+    "log": "Log",
+
+    "db_is_not_available": "The database is currently not available. Please try again in a couple of minutes."
+}

@@ -1,3 +1,4 @@
+from jproperties import Properties
 from sqlite3 import Error
 import datetime
 import requests
@@ -8,12 +9,20 @@ import json
 import sys
 import os
 
-token = "######################"
-version = "5.103"
+configs = Properties()
+properties_path = os.getcwd() + "\\" + "config.properties"
+with open(properties_path, 'rb') as config_file:
+    configs.load(config_file)
+
+vk_token = configs.get("VK_ACCESS_TOKEN").data
+vk_api_version = configs.get("VK_API_VERSION").data
+db_name = configs.get("DB_NAME").data
+
 fields = "online"
 user_id = int(sys.argv[1])
-request = "https://api.vk.com/method/users.get?access_token=" + token + "&v=" + version + "&fields=" + fields + "&user_ids=" + str(user_id)
-database_path = os.getcwd() + "\\" + "statistics.db"
+request = "https://api.vk.com/method/users.get?access_token=" + vk_token + "&v=" + vk_api_version + "&fields=" + fields + "&user_ids=" + str(
+    user_id)
+database_path = os.getcwd() + "\\" + db_name
 sql_create_stats_table = """ CREATE TABLE IF NOT EXISTS stats (
                                         id integer PRIMARY KEY,
                                         user_id integer NOT NULL,
@@ -21,7 +30,6 @@ sql_create_stats_table = """ CREATE TABLE IF NOT EXISTS stats (
                                         is_mobile_online integer,
                                         scan_time DATETIME DEFAULT CURRENT_TIMESTAMP
                                     ); """
-period = 200
 
 
 def update_data():
@@ -74,16 +82,17 @@ def main():
                 is_mobile_online = current_mobile_online_status
 
                 d = datetime.datetime.now()
-                timezone = pytz.timezone("Europe/Moscow")
-                d_tz = timezone.localize(d)
-                print(d_tz)
+                timezone = pytz.timezone(configs.get("TIME_ZONE").data)
+                date_time = timezone.localize(d)
 
-                print("is_online: " + str(is_online))
-                print("is_mobile_online: " + str(is_mobile_online))
-                record = (user_id, is_online, is_mobile_online, d_tz)
+                # print(date_time)
+                # print("is_online: " + str(is_online))  # PC
+                # print("is_mobile_online: " + str(is_mobile_online))
+
+                record = (user_id, is_online, is_mobile_online, date_time)
                 with connection:
                     create_record(connection, record)
-            time.sleep(period)
+            time.sleep(int(configs.get("SCAN_SECONDS_PERIOD").data))
 
 
 if __name__ == "__main__":

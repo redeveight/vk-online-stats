@@ -3,10 +3,15 @@ const sqlite3 = require('sqlite3').verbose();
 const moment = require('moment');
 const fs = require('fs');
 
+const PropertiesReader = require('properties-reader');
+const prop = PropertiesReader('config.properties');
+getProperty = (pty) => { return prop.get(pty); }
+
 let base_query = "SELECT is_online, is_mobile_online, scan_time FROM stats WHERE (scan_time BETWEEN 'start 00:00' AND 'end 23:59') AND user_id=";
-let db = new sqlite3.Database(':memory:');
-const help = 'scan># - запуск сканирования. # - ID пользователя;\n\n\"s\" - статистика за текущие сутки;\n\n\"s#\" - статистика за определенное количество дней, где # это количество дней. Например, s10;\n\n\"YYYY-MM-DD\" - статистика за определенный день, где YYYY это год, MM - месяц, а DD - день. Например, 2020-01-31.';
-const bot = new Telegraf('##########:#####################');
+
+const db_name = getProperty('DB_NAME');
+const bot = new Telegraf(getProperty('TELEGRAM_BOT_TOKEN'));
+const help = getProperty('BOT_HELP_MESSAGE');
 
 const spawn = require("child_process").spawn;
 let pythonProcess = null;
@@ -26,6 +31,7 @@ bot.hears(/^scan>[0-9]*$/, (ctx) => {
 bot.hears(/^(s|S|с|С){1}[0-9]*$/, (ctx) => {
     if (id == 0) return;
     try {
+        ctx
         let query = "";
         if (ctx.message.text.length == 1) {
             query = base_query.replace("start", moment().subtract(0, 'days')
@@ -40,7 +46,7 @@ bot.hears(/^(s|S|с|С){1}[0-9]*$/, (ctx) => {
         let is_online = 0, is_mobile_online = 0, first_recreated_sessions = 0;
         let minutes_online = 0.0, minutes_mobile_online = 0.0;
         let count_records = 0, count_pc_connections = 0, count_mobile_connections = 0;
-        let db = new sqlite3.Database('./statistics.db', sqlite3.OPEN_READONLY, (err) => {
+        let db = new sqlite3.Database('./' + db_name, sqlite3.OPEN_READONLY, (err) => {
             if (err) {
                 ctx.reply("В данный момент БД не доступна. Повторите попытку через пару минут.");
                 console.error(err.message);
@@ -179,7 +185,7 @@ bot.hears(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/, (ctx) => {
     let is_online = 0, is_mobile_online = 0, first_recreated_sessions = 0, last_recreated_sessions = 0;
     let minutes_online = 0.0, minutes_mobile_online = 0.0;
     let count_records = 0, count_pc_connections = 0, count_mobile_connections = 0;
-    let db = new sqlite3.Database('./statistics.db', sqlite3.OPEN_READONLY, (err) => {
+    let db = new sqlite3.Database('./' + db_name, sqlite3.OPEN_READONLY, (err) => {
         if (err) {
             ctx.reply("В данный момент БД не доступна. Повторите попытку через пару минут.");
             console.error(err.message);
@@ -323,8 +329,8 @@ bot.hears(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/, (ctx) => {
 
 bot.command('get', (ctx) => {
     return ctx.telegram.sendDocument(ctx.from.id, {
-        source: "./statistics.db",
-        filename: 'statistics.db'
+        source: "./" + db_name,
+        filename: db_name
      }).catch(function(error){ console.log(error); });
 });
 

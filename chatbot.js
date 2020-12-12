@@ -10,7 +10,7 @@ getProperty = (pty) => { return prop.get(pty); }
 
 i18n.configure({
     locales:['en', 'ru'],
-    directory: __dirname + '/locales',
+    directory: __dirname + '/resources/locales',
     defaultLocale: getProperty('BOT_LANGUAGE'),
     cookie: 'i18n'
 });
@@ -155,7 +155,7 @@ bot.hears(/^(s|S|с|С){1}[0-9]*$/, (ctx) => {
                                 + "\n" + i18n.__("duration_of_mobile_sessions") + ": " + minutes_mobile_online.toFixed(0)
                                 + " (" + (minutes_mobile_online / 60).toFixed(2) + ")"
                                 + " [" + ((minutes_mobile_online / (minutes_online)) * 100).toFixed(0) + "%]"
-                                + "\n\nЛог\n" + log
+                                + "\n" + i18n.__("log") + "\n" + log
                             );
                         } else {
                             result = (
@@ -309,7 +309,7 @@ bot.hears(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/, (ctx) => {
                             + "\n" + i18n.__("duration_of_mobile_sessions") + ": " + minutes_mobile_online.toFixed(0)
                             + " (" + (minutes_mobile_online / 60).toFixed(2) + ")"
                             + " [" + ((minutes_mobile_online / (minutes_online)) * 100).toFixed(0) + "%]"
-                            + "\n\nЛог\n" + log
+                            + "\n" + i18n.__("log") + "\n" + log
                         );
                     } else {
                         result = (

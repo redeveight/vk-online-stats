@@ -1,0 +1,19 @@
+{
+  "name": "vk-online-stats",
+  "version": "1.0.0",
+  "description": "Telegram Bot and Python script for tracking Vk activity",
+  "main": "chatbot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redeveight/vk-online-stats.git"
+  },
+  "author": "redeveight",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redeveight/vk-online-stats/issues"
+  },
+  "homepage": "https://github.com/redeveight/vk-online-stats#readme"
+}

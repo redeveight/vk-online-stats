@@ -4,7 +4,7 @@
   "description": "Telegram Bot and Python script for tracking Vk activity",
   "main": "chatbot.js",
   "scripts": {
-    "test": "mocha"
+    "test": "echo \"No test specified\""
   },
   "repository": {
     "type": "git",

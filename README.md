@@ -9,12 +9,6 @@ Telegram Bot and Python script for tracking Vk activity.
 
 Node.js 14.x, Python 3.x
 
-## Installation
-
-```bash
-npm i vk-online-stats
-```
-
 ## Options
 
 <table role="table">

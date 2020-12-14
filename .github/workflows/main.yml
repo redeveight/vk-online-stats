@@ -3,12 +3,11 @@ name: main
 on: [push]
 
 jobs:
-  if: ${{ github.event.assignee.login == 'ecp-maya-devops-adsk' }}
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
       - name: Build on Node.js ${{ matrix.node-version }}
@@ -23,9 +22,10 @@ jobs:
           CI: true
 
   publish:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' & ${{ github.event.assignee.login == 'ecp-maya-devops-adsk' }}
     needs: build
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1

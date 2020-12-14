@@ -9,6 +9,25 @@ Telegram Bot and Python script for tracking Vk activity.
 
 Node.js 14.x, Python 3.x
 
+## Configure
+
+Insert your tokens in config.properties file.
+```bash
+VK_ACCESS_TOKEN = YOUR_TOKEN
+TELEGRAM_BOT_TOKEN = YOUR_TOKEN
+```
+Also in the config you can change the bot language, server time zone, scan speed and more.
+
+## Run
+
+```bash
+node chatbot.js
+```
+or only scan
+```bash
+py scan_script.py VK_USER_ID
+```
+
 ## Options
 
 <table role="table">

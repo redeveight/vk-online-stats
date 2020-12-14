@@ -33,7 +33,7 @@ Node.js 14.x, Python 3.x
     </tr>
     <tr>
       <td>YYYY-MM-DD</td>
-      <td>statistics for a specific day, where YYYY is the year, <br />MM is the month, and DD is the day</td>
+      <td>statistics for a specific day, where <br />YYYY is the year, MM is the month, <br />and DD is the day</td>
     </tr>
   </tbody>
 </table>

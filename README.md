@@ -26,6 +26,8 @@ Insert your tokens in config.properties file.
 VK_ACCESS_TOKEN = YOUR_TOKEN
 TELEGRAM_BOT_TOKEN = YOUR_TOKEN
 ```
+<b>VK_ACCESS_TOKEN</b> can be obtained from the [VK Developers](https://vk.com/dev) page. After going to the developers page, you need to do the following: "My apps -> Create -> Standalone app -> Connect app". Next, in the settings of the newly created Standalone app, find and copy the <b>Service token</b>.
+
 Also in the config you can change the bot language, server time zone, scan speed and more.
 
 ## Run

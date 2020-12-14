@@ -9,6 +9,16 @@ Telegram Bot and Python script for tracking Vk activity.
 
 Node.js 14.x, Python 3.x
 
+## Installing
+
+[Download](https://github.com/redeveight/vk-online-stats/releases/tag/release) and unzip.
+<br />Install Python script dependencies:
+```bash
+pip install jproperties
+pip install requests
+pip install pytz
+```
+
 ## Configure
 
 Insert your tokens in config.properties file.

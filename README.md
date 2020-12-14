@@ -48,11 +48,11 @@ py scan_script.py VK_USER_ID
     </tr>
     <tr>
       <td>s#</td>
-      <td>statistics for a certain number of days, <br />where # is the number of days;</td>
+      <td>statistics for a certain number of days, where # is the number of days;</td>
     </tr>
     <tr>
       <td>YYYY-MM-DD</td>
-      <td>statistics for a specific day, where <br />YYYY is the year, MM is the month, <br />and DD is the day.</td>
+      <td>statistics for a specific day, where YYYY is the year, MM is the month, and DD is the day.</td>
     </tr>
   </tbody>
 </table>

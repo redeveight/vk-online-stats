@@ -21,19 +21,19 @@ Node.js 14.x, Python 3.x
    <tbody>
     <tr>
       <td>scan>#</td>
-      <td>start scanning. # - vk user ID</td>
+      <td>start scanning. # - vk user ID;</td>
     </tr>
     <tr>
       <td>s</td>
-      <td>statistics for the current day</td>
+      <td>statistics for the current day;</td>
     </tr>
     <tr>
       <td>s#</td>
-      <td>statistics for a certain number of days, <br />where # is the number of days</td>
+      <td>statistics for a certain number of days, <br />where # is the number of days;</td>
     </tr>
     <tr>
       <td>YYYY-MM-DD</td>
-      <td>statistics for a specific day, where <br />YYYY is the year, MM is the month, <br />and DD is the day</td>
+      <td>statistics for a specific day, where <br />YYYY is the year, MM is the month, <br />and DD is the day;</td>
     </tr>
   </tbody>
 </table>

@@ -3,6 +3,7 @@ name: main
 on: [push]
 
 jobs:
+  if: ${{ github.event.assignee.login == 'ecp-maya-devops-adsk' }}
   build:
     runs-on: ubuntu-latest
     strategy:
